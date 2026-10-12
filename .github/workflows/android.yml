@@ -1,0 +1,57 @@
+name: Android APK
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Stamp build marker
+        run: |
+          sed -i "s/build: dev/build: ${GITHUB_SHA::7}/" www/index.html
+
+      - name: Sync Capacitor
+        run: npx cap sync android
+
+      - name: Build debug APK
+        run: |
+          chmod +x android/gradlew
+          cd android && ./gradlew assembleDebug
+
+      - name: Rename APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk pwa-capacitor-debug.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pwa-capacitor-debug-apk
+          path: pwa-capacitor-debug.apk
+
+      - name: Publish latest release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --cleanup-tag --yes || true
+          gh release create latest pwa-capacitor-debug.apk \
+            --title "Latest debug APK" \
+            --notes "$GITHUB_SHA" \
+            --target "$GITHUB_SHA"

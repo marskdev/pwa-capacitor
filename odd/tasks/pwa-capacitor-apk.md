@@ -14,11 +14,11 @@ Basic PWA wrapped with Capacitor; GitHub Actions builds a debug APK and publishe
 - [x] T2 PWA app in www/ (index, manifest, service worker, icon) + capacitor.config.json
 - [x] T3 android platform (`cap add android`, `cap sync`)
 - [x] T4 workflow `.github/workflows/android.yml` (build + artifact + Release)
-- [ ] T5 create private repo, push, verify run and APK asset
+- [x] T5 create private repo, push, verify run and APK asset
 
 ## Routes
 - T1, T3, T5: direct inline (commands/state).
 - T2, T4: delegated direct writer (2+ files).
 
 ## Evidence
-(pending)
+Run 38198092935 green; Release latest has pwa-capacitor-debug.apk (4.1 MB). Commits: 29058a3, 20ff947, cac36c8, 3b9152f. Local APK build not run (no JDK); CI is the proof. Warnings: Node 20 action deprecation, setup-java v4 deprecated.

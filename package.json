@@ -1,0 +1,14 @@
+{
+  "name": "pwa-capacitor",
+  "version": "1.0.0",
+  "description": "PWA + Capacitor APK test app",
+  "scripts": {},
+  "keywords": [],
+  "type": "commonjs",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3"
+  }
+}

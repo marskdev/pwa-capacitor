@@ -11,9 +11,9 @@ Basic PWA wrapped with Capacitor; GitHub Actions builds a debug APK and publishe
 
 ## Tasks
 - [x] T1 scaffold: git, .gitignore, package.json, Capacitor deps
-- [ ] T2 PWA app in www/ (index, manifest, service worker, icon) + capacitor.config.json
-- [ ] T3 android platform (`cap add android`, `cap sync`)
-- [ ] T4 workflow `.github/workflows/android.yml` (build + artifact + Release)
+- [x] T2 PWA app in www/ (index, manifest, service worker, icon) + capacitor.config.json
+- [x] T3 android platform (`cap add android`, `cap sync`)
+- [x] T4 workflow `.github/workflows/android.yml` (build + artifact + Release)
 - [ ] T5 create private repo, push, verify run and APK asset
 
 ## Routes
